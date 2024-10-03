@@ -3,4 +3,4 @@
 This a config I crafted for my daily PRODUCTION work
 
 take a peep:
-![](./readme_scrnshot.png)
+![](./readme_items/screenshot_1.png)
