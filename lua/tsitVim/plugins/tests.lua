@@ -13,6 +13,19 @@ return {
 	config = function()
 		-- Neotest configuration with DAP
 		require("neotest").setup({
+			icons = {
+				expanded = "",
+				child_prefix = "",
+				child_indent = "",
+				final_child_prefix = "",
+				non_collapsible = "",
+				collapsed = "",
+
+				passed = "",
+				running = "",
+				failed = "",
+				unknown = "",
+			},
 			adapters = {
 				require("neotest-python")({
 					dap = {
@@ -62,8 +75,26 @@ return {
 		-- DAP keybindings
 		local dap = require("dap")
 
+		-- Define custom highlight groups
+		vim.cmd("highlight DapBreakpointText guifg=#FF0000 gui=bold") -- Red bold text for breakpoint
+		vim.cmd("highlight DapStoppedText guifg=#00FF00 gui=bold") -- Green bold text for stopped sign
+		vim.cmd("highlight DapBreakpointLine guibg=#330000") -- Dark red background for breakpoint line
+		vim.cmd("highlight DapStoppedLine guibg=#003300") -- Dark green background for stopped line
+		vim.cmd("highlight DapBreakpointNum guifg=#FF0000 gui=bold") -- Red bold text for line number at breakpoint
+		vim.cmd("highlight DapStoppedNum guifg=#00FF00 gui=bold") -- Green bold text for line number at stopped point
+
+		-- Assign the custom highlight groups to the signs
+		vim.fn.sign_define(
+			"DapBreakpoint",
+			{ text = "󰃤", texthl = "DapBreakpointText", linehl = "DapBreakpointLine", numhl = "DapBreakpointNum" }
+		)
+		vim.fn.sign_define(
+			"DapStopped",
+			{ text = "", texthl = "DapStoppedText", linehl = "DapStoppedLine", numhl = "DapStoppedNum" }
+		)
+
 		vim.keymap.set("n", "<leader>ttb", function()
-			require("dap").toggle_breakpoint()
+			dap.toggle_breakpoint()
 		end, { desc = "Toggle Breakpoint" })
 		vim.keymap.set("n", "<F1>", dap.continue)
 		vim.keymap.set("n", "<F2>", dap.step_into)
