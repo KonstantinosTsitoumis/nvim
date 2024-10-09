@@ -12,7 +12,12 @@ return {
 	},
 	config = function()
 		-- Neotest configuration with DAP
-		require("neotest").setup({
+		neotest = require("neotest")
+
+		neotest.setup({
+			summary = {
+				follow = true,
+			},
 			icons = {
 				expanded = "",
 				child_prefix = "",
@@ -32,7 +37,7 @@ return {
 						justMyCode = false, -- Debug into library code
 						console = "integratedTerminal", -- Output console setting
 					},
-					args = { "--log-level", "DEBUG", "--quiet" }, -- Pytest arguments
+					args = { "--log-level", "DEBUG", "-vv" }, -- Pytest arguments
 					runner = "pytest", -- Set the test runner
 				}),
 			},
@@ -45,31 +50,32 @@ return {
 
 		-- Keybindings for running tests with Neotest
 		vim.keymap.set("n", "<leader>ttn", function()
-			require("neotest").run.run() -- Run nearest test
+			neotest.run.run() -- Run nearest test
 		end, { desc = "Run nearest test" })
 
 		vim.keymap.set("n", "<leader>ttf", function()
-			require("neotest").run.run(vim.fn.expand("%")) -- Run test file
+			neotest.run.run(vim.fn.expand("%")) -- Run test file
+			neotest.summary.toggle()
 		end, { desc = "Run test file" })
 
 		vim.keymap.set("n", "<leader>tts", function()
-			require("neotest").run.stop() -- Stop test
+			neotest.run.stop() -- Stop test
 		end, { desc = "Stop test" })
 
 		vim.keymap.set("n", "<leader>tto", function()
-			require("neotest").output.open({ enter = true }) -- Open test output
+			neotest.output.open({ enter = true }) -- Open test output
 		end, { desc = "Open test output" })
 
 		vim.keymap.set("n", "<leader>ttu", function()
-			require("neotest").summary.toggle() -- Toggle test summary
+			neotest.summary.toggle() -- Toggle test summary
 		end, { desc = "Toggle test summary" })
 
 		vim.keymap.set("n", "<leader>ttd", function()
-			require("neotest").run.run({ strategy = "dap" }) -- Test Method with DAP
+			neotest.run.run({ strategy = "dap" }) -- Test Method with DAP
 		end, { desc = "Run nearest test method with DAP" })
 
 		vim.keymap.set("n", "<leader>ttDF", function()
-			require("neotest").run.run({ vim.fn.expand("%"), strategy = "dap" }) -- Test Class with DAP
+			neotest.run.run({ vim.fn.expand("%"), strategy = "dap" }) -- Test Class with DAP
 		end, { desc = "Run all tests in file with DAP" })
 
 		-- DAP keybindings
