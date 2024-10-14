@@ -16,32 +16,31 @@ return {
 			inactive_bg = "#2c3043",
 		}
 
-		local basic_theme = "#1a1c0e"
 		local my_lualine_theme = {
 			normal = {
-				a = { bg = "#faff75", fg = basic_theme, gui = "bold" },
-				b = { bg = basic_theme, fg = colors.fg },
-				c = { bg = basic_theme, fg = colors.fg },
+				a = { bg = colors.blue, fg = colors.bg, gui = "bold" },
+				b = { bg = colors.bg, fg = colors.fg },
+				c = { bg = colors.bg, fg = colors.fg },
 			},
 			insert = {
-				a = { bg = "#FFA500", fg = basic_theme, gui = "bold" },
-				b = { bg = basic_theme, fg = colors.fg },
-				c = { bg = basic_theme, fg = colors.fg },
+				a = { bg = colors.green, fg = colors.bg, gui = "bold" },
+				b = { bg = colors.bg, fg = colors.fg },
+				c = { bg = colors.bg, fg = colors.fg },
 			},
 			visual = {
-				a = { bg = colors.violet, fg = basic_theme, gui = "bold" },
-				b = { bg = basic_theme, fg = colors.fg },
-				c = { bg = basic_theme, fg = colors.fg },
+				a = { bg = colors.violet, fg = colors.bg, gui = "bold" },
+				b = { bg = colors.bg, fg = colors.fg },
+				c = { bg = colors.bg, fg = colors.fg },
 			},
 			command = {
-				a = { bg = colors.red, fg = basic_theme, gui = "bold" },
-				b = { bg = basic_theme, fg = colors.fg },
-				c = { bg = basic_theme, fg = colors.fg },
+				a = { bg = colors.yellow, fg = colors.bg, gui = "bold" },
+				b = { bg = colors.bg, fg = colors.fg },
+				c = { bg = colors.bg, fg = colors.fg },
 			},
 			replace = {
-				a = { bg = colors.red, fg = basic_theme, gui = "bold" },
-				b = { bg = basic_theme, fg = colors.fg },
-				c = { bg = basic_theme, fg = colors.fg },
+				a = { bg = colors.red, fg = colors.bg, gui = "bold" },
+				b = { bg = colors.bg, fg = colors.fg },
+				c = { bg = colors.bg, fg = colors.fg },
 			},
 			inactive = {
 				a = { bg = colors.inactive_bg, fg = colors.semilightgray, gui = "bold" },

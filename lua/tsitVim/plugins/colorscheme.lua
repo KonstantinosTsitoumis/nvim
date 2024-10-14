@@ -76,4 +76,4 @@ local gruvbox = {
 	end,
 	opts = ...,
 }
-return gruvbox
+return tokyon
