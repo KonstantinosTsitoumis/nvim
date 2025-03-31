@@ -2,8 +2,10 @@ return {
 	"nvim-neotest/neotest",
 	dependencies = {
 		"nvim-neotest/neotest-python", -- Python adapter for Neotest
+		"nvim-neotest/neotest-go", -- Go adapter for Neotest
 		"mfussenegger/nvim-dap", -- DAP core
 		"mfussenegger/nvim-dap-python", -- DAP Python support
+		"leoluz/nvim-dap-go", -- DAP Go support
 		"rcarriga/nvim-dap-ui", -- DAP UI
 		"nvim-neotest/nvim-nio",
 		"nvim-lua/plenary.nvim",
@@ -32,6 +34,10 @@ return {
 				unknown = "",
 			},
 			adapters = {
+				require("neotest-go")({
+					experimental = { test_table = true },
+					args = { "-count=1", "-timeout=60s" },
+				}),
 				require("neotest-python")({
 					dap = {
 						justMyCode = false, -- Debug into library code
@@ -43,10 +49,11 @@ return {
 			},
 		})
 
-		-- Setup DAP for Python
+		-- Setup DAP for Python and Go
 		require("dap-python").setup(
 			vim.fn.glob(vim.fn.stdpath("data") .. "/mason/") .. "packages/debugpy/venv/bin/python"
 		)
+		require("dap-go").setup()
 
 		-- Keybindings for running tests with Neotest
 		vim.keymap.set("n", "<leader>ttn", function()

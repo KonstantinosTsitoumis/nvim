@@ -40,6 +40,7 @@ return {
 				"prismals",
 				"pyright",
 				"typos_lsp",
+				"gopls",
 			},
 		})
 
@@ -51,12 +52,13 @@ return {
 				"black", -- python formatter
 				"pylint",
 				"eslint_d",
+				"gofumpt", -- go
 			},
 		})
 
 		mason_dap.setup({
 			automatic_setup = true,
-			ensure_installed = { "python" }, -- ensures `debugpy` is installed
+			ensure_installed = { "python", "delve" }, -- ensures `debugpy` and `delve` is installed
 		})
 	end,
 }
